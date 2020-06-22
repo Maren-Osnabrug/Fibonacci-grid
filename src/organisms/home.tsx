@@ -3,7 +3,26 @@ import styled from 'styled-components/native';
 
 export const HomePage: React.FC = () => (
 	<Container>
-		<Text>Home</Text>
+		<ColouredText>Home</ColouredText>
+		<ColouredText>✅Maak een 50x50 grid.</ColouredText>
+		<ColouredText>
+			✅Als je klikt op een cel, wordt bij alle cellen in de rij en kolom van de cel 1 opgeteld.
+		</ColouredText>
+		<ColouredText>
+			✅Was een cel leeg, dan wordt die op 1 gezet.
+		</ColouredText>
+		<ColouredText>
+			✅Na elke verandering licht een cel kort&nbsp;
+			<ColouredText color="yellow">geel</ColouredText>&nbsp;op.
+		</ColouredText>
+		<ColouredText>
+			Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast elkaar staan,
+			lichten deze cellen kort&nbsp;
+			<ColouredText color="green">groen</ColouredText>&nbsp;op en worden ze leeg gemaakt.
+		</ColouredText>
+		<ColouredText>
+			Gebruik de programmeertaal die je het beste vindt passen.
+		</ColouredText>
 	</Container>
 );
 
@@ -13,3 +32,6 @@ const Container = styled.View`
 	justify-content: space-around;
 `;
 
+const ColouredText = styled.Text<{color?: string}>`
+	background-color: ${props => props.theme.colors[props.color] || props.theme.colors.white}
+`;

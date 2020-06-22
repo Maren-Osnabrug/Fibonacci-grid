@@ -1,8 +1,9 @@
-import React from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components/native';
+import React, { useContext }  from 'react';
+import { ThemeContext, DefaultTheme, ThemeProvider as StyledThemeProvider } from 'styled-components/native';
 
-const theme = {
+export const theme: DefaultTheme = {
 	colors: {
+		white: 'rgb(255, 255, 255)',
 		yellow: 'rgb(255, 255, 0)',
 		green: 'rgb(0, 255, 0)'
 	}
@@ -13,3 +14,5 @@ export const ThemeProvider: React.FC = (props) => (
 			{props.children}
 	</StyledThemeProvider>
 );
+
+export const useTheme = () => useContext(ThemeContext);
