@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Grid } from 'src/molecules/grid';
 export const HomePage: React.FC = () => (
 	<Container>
 		<ColouredText>Home</ColouredText>
 		<ColouredText>✅Maak een 50x50 grid.</ColouredText>
+		<Grid rowCount={10} columnCount={10} />
 		<ColouredText>
 			✅Als je klikt op een cel, wordt bij alle cellen in de rij en kolom van de cel 1 opgeteld.
 		</ColouredText>
