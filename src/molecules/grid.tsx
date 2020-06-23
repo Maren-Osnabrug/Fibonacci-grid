@@ -33,7 +33,7 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 					!isFibonacci(cell) ||
 					endIndex >= row.length
 				) {
-					return row;
+					return;
 				}
 
 				// generate SEQUENCE_LENGTH fibonacci sequence with that cellnumber as highest
@@ -41,15 +41,15 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 				const subsetRow = row.slice(endIndex, cellIndex + 1);
 				// check if fib seq is equal to SEQUENCE_LENGTH subset from the row, else return early
 				if (!sequencesAreEqual(sequence, subsetRow)) {
-					return row;
+					return;
 				}
 
-				gridClone[rowIndex] = row.map((rowLower, rowLowerIndex) =>
-					// prettier-ignore
+				gridClone[rowIndex] = row.map((rowLower: number, rowLowerIndex: number) =>
 					isBetweenIndex(rowLowerIndex, endIndex, cellIndex) ? null : rowLower
 				);
 			})
 		);
+
 		setGrid(gridClone);
 	};
 
