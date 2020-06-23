@@ -4,14 +4,11 @@ import { ThemeProvider } from 'src/providers/theme';
 import 'jest-styled-components/native';
 
 const TestProvider: React.FC = (props) => (
-	<ThemeProvider>
-		{props.children}
-	</ThemeProvider>
+	<ThemeProvider>{props.children}</ThemeProvider>
 );
 
-const customRender = (ui: React.ReactElement<any>, options?: RenderOptions) => (
-	render(ui, { wrapper: TestProvider, ...options })
-);
+const customRender = (ui: React.ReactElement<any>, options?: RenderOptions) =>
+	render(ui, { wrapper: TestProvider, ...options });
 
 export * from '@testing-library/react-native';
 export { customRender as render };

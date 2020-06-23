@@ -12,11 +12,11 @@ import {
 } from 'src/providers/fibonacci-math';
 
 export const Grid: React.FC<GridProps> = ({ size }) => {
-	const initialGrid = new Array(size).fill(new Array(size).fill(null))
+	const initialGrid = new Array(size).fill(new Array(size).fill(null));
 	const [grid, setGrid] = useState(initialGrid);
 
 	const onCellClick = (clickedCellIndex: number, clickedRowIndex: number) => {
-		let gridClone = grid.map(inner => inner.slice())
+		const gridClone = grid.map((inner) => inner.slice());
 
 		for (let iterator = 0; iterator < size; iterator++) {
 			if (iterator !== clickedRowIndex) {
@@ -25,8 +25,9 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 			gridClone[clickedRowIndex][iterator] += 1; // update row
 		}
 
-		gridClone.map((row, rowIndex) => row.map((cell: number, cellIndex: number) => {
-				const endIndex = (cellIndex - SEQUENCE_LENGTH) + 1;
+		gridClone.map((row, rowIndex) =>
+			row.map((cell: number, cellIndex: number) => {
+				const endIndex = cellIndex - SEQUENCE_LENGTH + 1;
 				if (
 					cell < MINIMUM_FIBONACCI_VALUE ||
 					!isFibonacci(cell) ||
@@ -37,17 +38,20 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 
 				// generate SEQUENCE_LENGTH fibonacci sequence with that cellnumber as highest
 				const sequence = getFibonacciSequence(cell);
-				const subsetRow = row.slice(endIndex, cellIndex + 1)
+				const subsetRow = row.slice(endIndex, cellIndex + 1);
 				// check if fib seq is equal to SEQUENCE_LENGTH subset from the row, else return early
-				if (!sequencesAreEqual(sequence, subsetRow)) { return row }
+				if (!sequencesAreEqual(sequence, subsetRow)) {
+					return row;
+				}
 
-				gridClone[rowIndex] = row.map((rowLower, rowLowerIndex) => (
+				gridClone[rowIndex] = row.map((rowLower, rowLowerIndex) =>
+					// prettier-ignore
 					isBetweenIndex(rowLowerIndex, endIndex, cellIndex) ? null : rowLower
-				))
+				);
 			})
-		)
+		);
 		setGrid(gridClone);
-	}
+	};
 
 	return (
 		<Container>
@@ -55,13 +59,16 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 				<Row key={rowIndex}>
 					{row.map((cell: number, cellIndex: number) => (
 						<CellContainer key={cellIndex} rowCellCount={size}>
-							<Cell value={cell} onClick={() => onCellClick(cellIndex, rowIndex)} />
+							<Cell
+								value={cell}
+								onClick={() => onCellClick(cellIndex, rowIndex)}
+							/>
 						</CellContainer>
 					))}
 				</Row>
 			))}
 		</Container>
-	)
+	);
 };
 
 interface GridProps {
@@ -79,7 +86,7 @@ const Row = styled.View`
 	flex-direction: row;
 `;
 
-const CellContainer = styled.View<{rowCellCount: number}>`
-	width: calc(100% / ${props => props.rowCellCount});
+const CellContainer = styled.View<{ rowCellCount: number }>`
+	width: calc(100% / ${(props) => props.rowCellCount});
 	display: flex;
 `;

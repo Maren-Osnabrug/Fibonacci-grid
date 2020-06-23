@@ -8,7 +8,8 @@ export const HomePage: React.FC = () => (
 		<ColouredText>✅Maak een 50x50 grid.</ColouredText>
 		<Grid size={10} />
 		<ColouredText>
-			✅Als je klikt op een cel, wordt bij alle cellen in de rij en kolom van de cel 1 opgeteld.
+			✅Als je klikt op een cel, wordt bij alle cellen in de rij en kolom
+			van de cel 1 opgeteld.
 		</ColouredText>
 		<ColouredText>
 			✅Was een cel leeg, dan wordt die op 1 gezet.
@@ -18,9 +19,10 @@ export const HomePage: React.FC = () => (
 			<ColouredText color="yellow">geel</ColouredText>&nbsp;op.
 		</ColouredText>
 		<ColouredText>
-			✅Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast elkaar staan,
-			lichten deze cellen kort&nbsp;
-			<ColouredText color="green">groen</ColouredText>&nbsp;op en worden ze leeg gemaakt.
+			✅Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast
+			elkaar staan, lichten deze cellen kort&nbsp;
+			<ColouredText color="green">groen</ColouredText>&nbsp;op en worden
+			ze leeg gemaakt.
 		</ColouredText>
 		<ColouredText>
 			Gebruik de programmeertaal die je het beste vindt passen.
@@ -34,6 +36,7 @@ const Container = styled.View`
 	justify-content: space-around;
 `;
 
-const ColouredText = styled.Text<{color?: string}>`
-	background-color: ${props => props.theme.colors[props.color] || props.theme.colors.white}
+const ColouredText = styled.Text<{ color?: string }>`
+	background-color: ${(props) =>
+		props.theme.colors[props.color] || props.theme.colors.white};
 `;
