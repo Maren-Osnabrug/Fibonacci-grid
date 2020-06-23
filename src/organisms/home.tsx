@@ -18,7 +18,7 @@ export const HomePage: React.FC = () => (
 			<ColouredText color="yellow">geel</ColouredText>&nbsp;op.
 		</ColouredText>
 		<ColouredText>
-			Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast elkaar staan,
+			✅Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast elkaar staan,
 			lichten deze cellen kort&nbsp;
 			<ColouredText color="green">groen</ColouredText>&nbsp;op en worden ze leeg gemaakt.
 		</ColouredText>

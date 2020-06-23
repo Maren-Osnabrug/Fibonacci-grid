@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 
 import { theme } from "src/providers/theme";
 
 export const Cell: React.FC<CellProps> = ({ value, animationColor, onClick }) => {
+  const [firstRender, setFirstRender] = useState(true)
   const highlightAnimation = useRef(new Animated.Value(0)).current
   const colorInterpolation = highlightAnimation.interpolate({
     inputRange: [0, 0.5, 1],
@@ -18,12 +19,14 @@ export const Cell: React.FC<CellProps> = ({ value, animationColor, onClick }) =>
   const setUpdatedValue = () => onClick(value + 1);
 
   useEffect(() => {
-    if (value) {
+    if (!firstRender) {
       Animated
         .timing(highlightAnimation, { toValue: 1, duration: 500 })
         .start(() => {
           highlightAnimation.setValue(0);
         })
+    } else {
+      setFirstRender(false)
     }
   }, [value]);
 
