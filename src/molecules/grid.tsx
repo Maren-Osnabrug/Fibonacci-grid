@@ -9,23 +9,13 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 
 	const onCellClick = (clickedCellIndex: number, clickedRowIndex: number) => {
 		let gridClone = grid.map(inner => inner.slice())
-		gridClone = gridClone.map((row, rowIndex) => {
-			if (rowIndex === clickedRowIndex) {
-				console.log({rowIndex}, row)
-				row = row.map((cell, cellIndex) => {
-					if (cellIndex !== clickedCellIndex) {
-						cell = cell + 1
-					}
-					return cell
-				})
+
+		for (let iterator = 0; iterator < size; iterator++) {
+			if (iterator !== clickedRowIndex) {
+				gridClone[iterator][clickedCellIndex] += 1
 			}
-			return row.map((cell: number | null, cellIndex) => {
-				if (cellIndex === clickedCellIndex) {
-					cell = cell + 1
-				}
-				return cell
-			})
-		})
+			gridClone[clickedRowIndex][iterator] += 1
+		}
 		setGrid(gridClone);
 	}
 
