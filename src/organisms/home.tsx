@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { Grid } from 'src/molecules/grid';
 export const HomePage: React.FC = () => (
 	<Container>
-		<ColouredText>Home</ColouredText>
+		<ColouredText>Q42 opdracht: </ColouredText>
 		<ColouredText>✅Maak een 50x50 grid.</ColouredText>
 		<Grid size={10} />
 		<ColouredText>

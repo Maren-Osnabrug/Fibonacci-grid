@@ -4,14 +4,18 @@ import styled from "styled-components/native";
 
 import { theme } from "src/providers/theme";
 
-export const Cell: React.FC<CellProps> = ({ value, animationColor, onClick }) => {
+const cellAnimationColor = (cell: number | null) => {
+	return cell === null ? 'rgba(0, 255, 0, 1)' : 'rgba(255, 255, 0, 1)'
+}
+
+export const Cell: React.FC<CellProps> = ({ value, onClick }) => {
   const [firstRender, setFirstRender] = useState(true)
   const highlightAnimation = useRef(new Animated.Value(0)).current
   const colorInterpolation = highlightAnimation.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [
       theme.colors.white,
-      animationColor,
+      cellAnimationColor(value),
       theme.colors.white,
     ]
   });
@@ -45,13 +49,8 @@ export const Cell: React.FC<CellProps> = ({ value, animationColor, onClick }) =>
 };
 
 interface CellProps {
-  animationColor?: string;
   value: number;
   onClick: (newValue: number) => void;
-}
-
-Cell.defaultProps = {
-  animationColor: theme.colors.yellow,
 }
 
 const Container = styled.TouchableOpacity`
