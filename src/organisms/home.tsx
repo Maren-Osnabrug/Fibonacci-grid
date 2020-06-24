@@ -7,7 +7,7 @@ export const HomePage: React.FC = () => (
 	<Container>
 		<Title>Q42 opdracht</Title>
 		<HighlightedText>Maak een 50x50 grid.</HighlightedText>
-		<Grid size={10} />
+		<Grid size={50} />
 		<HighlightedText>
 			Als je klikt op een cel, wordt bij alle cellen in de rij en kolom
 			van de cel 1 opgeteld.
