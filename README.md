@@ -16,8 +16,9 @@ This project can be used to make a grid of size X. When a cell in the grid is se
 To get up and running and start developing, follow the steps below.
 
 1. Install Node dependencies using `npm ci` (or `npm install`)
-2. Run the project with `npm start`
-3. Or test the project with `npm test` and `npm run lint`
+2. Install Expo-CLI `npm install -g expo-cli`
+3. Run the project with `npm start`
+4. Or test the project with `npm test` and `npm run lint`
 
 ### Troubleshooting project
 
