@@ -9,19 +9,15 @@
 
 ## Project notes
 
-_none_
-
+This project can be used to make a grid of size X. When a cell in the grid is selected, each cell in the row and the column will have their value incremented with 1. If a cell was empty before, it is now 1; After each change, a cell will flash a yellow background. If 5 cells in a row display a Fibonacci sequence, those cells will flash a green background and will be emptied.
 
 ## Getting started
 
 To get up and running and start developing, follow the steps below.
 
-1. Copy the following files and set it up for your machine
-	- `.env.example` to `.env`
-	- `app.staging.json` to `app.json`
-2. Install Node dependencies using `npm ci` (or `npm install`)
-3. Run the project with `npm start`
-4. Or test the project with `npm test` and `npm run lint`
+1. Install Node dependencies using `npm ci` (or `npm install`)
+2. Run the project with `npm start`
+3. Or test the project with `npm test` and `npm run lint`
 
 ### Troubleshooting project
 
@@ -35,9 +31,6 @@ Here are some steps to quickly reset your local environment to start all over ag
 	- `git reset --hard HEAD` — resets all local changes to the last commit, _use with caution_
 	- `git clean -xdf ./src` — removes all files in src not listed in the repo, _use with caution_
 3. Reset node modules and node caches using `npm ci`
-
-> Or rebuild the project with docker `docker-compose up --build`
-
 
 ## Folder structure
 
@@ -57,7 +50,7 @@ Next to these folders, there are some extra non-atomic folders with a special me
 
 > We also recommend using a [folder-component][link-folder-component] for complex multi-file components.
 
-> Please keep nesting minimal as possible, it's hard for developers if they have to search through all folders.
+> Please keep nesting minimal as possible, it's hard for developers to search through all folders.
 
 
 ## Coding rules
@@ -69,16 +62,11 @@ Be a good colleague and make your code stable and predictable by adhering to our
 - Make sure the automated tests (CI) are successful
 - **WRITE TESTS**
 
-
 ## Commit guidelines
 
 Make sure you follow the [Conventional Commits][link-convcomm] rules when formatting your commit messages.
-
-> You can view the most up-to-date version of these guidelines in the [Peakfijn Conventions][link-peakfijn-commits] repository.
-
 
 [link-airbnb-js]: https://github.com/airbnb/javascript
 [link-atomic-design]: https://bradfrost.com/blog/post/atomic-web-design/
 [link-convcomm]: https://www.conventionalcommits.org
 [link-folder-component]: https://medium.com/styled-components/component-folder-pattern-ee42df37ec68
-[link-peakfijn-commits]: https://github.com/Peakfijn/Conventions/tree/develop/packages/commit-types-peakfijn
