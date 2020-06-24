@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -16,32 +16,29 @@ export const Cell: React.FC<CellProps> = React.memo(({ value, onClick }) => {
 		],
 	});
 
-	const setUpdatedValue = () => onClick(value + 1);
+	const setUpdatedValue = useCallback(() => onClick(value + 1), [value]);
 
 	useEffect(() => {
-		if (!firstRender) {
-			Animated.timing(highlightAnimation, {
-				toValue: 1,
-				duration: 500,
-			}).start(() => {
+		if (firstRender) {
+			setFirstRender(false);
+		} else {
+			Animated.timing(highlightAnimation, { toValue: 1 }).start(() => {
 				highlightAnimation.setValue(0);
 			});
-		} else {
-			setFirstRender(false);
 		}
 	}, [value]);
 
 	return (
-		<Container onPress={setUpdatedValue} activeOpacity={1}>
+		<CellContainer onPress={setUpdatedValue} activeOpacity={1}>
 			<Animated.View
 				style={{
 					...StyleSheet.absoluteFillObject,
 					backgroundColor: colorInterpolation,
 				}}
 			>
-				<Content>{value}</Content>
+				<CenteredText>{value}</CenteredText>
 			</Animated.View>
-		</Container>
+		</CellContainer>
 	);
 });
 
@@ -51,11 +48,12 @@ interface CellProps {
 }
 
 const cellAnimationColor = (cell: number | null) => {
-	return cell === null ? 'rgba(0, 255, 0, 1)' : 'rgba(255, 255, 0, 1)';
+	return cell === null ? theme.colors.green : theme.colors.yellow;
 };
 
-const Container = styled.TouchableOpacity`
+const CellContainer = styled.TouchableOpacity`
 	border: 1px solid black;
+	border-collapse: collapse;
 	height: 20px;
 	width: 100%;
 	display: flex;
@@ -64,6 +62,6 @@ const Container = styled.TouchableOpacity`
 	background-color: ${(props) => props.theme.colors.white};
 `;
 
-const Content = styled.Text`
+const CenteredText = styled.Text`
 	text-align: center;
 `;

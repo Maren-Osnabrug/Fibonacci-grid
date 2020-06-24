@@ -1,42 +1,47 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { Grid } from 'src/molecules/grid';
+import { Grid } from 'src/molecules/grid/grid';
+
 export const HomePage: React.FC = () => (
 	<Container>
-		<ColouredText>Q42 opdracht: </ColouredText>
-		<ColouredText>✅Maak een 50x50 grid.</ColouredText>
+		<Title>Q42 opdracht</Title>
+		<HighlightedText>Maak een 50x50 grid.</HighlightedText>
 		<Grid size={10} />
-		<ColouredText>
-			✅Als je klikt op een cel, wordt bij alle cellen in de rij en kolom
+		<HighlightedText>
+			Als je klikt op een cel, wordt bij alle cellen in de rij en kolom
 			van de cel 1 opgeteld.
-		</ColouredText>
-		<ColouredText>
-			✅Was een cel leeg, dan wordt die op 1 gezet.
-		</ColouredText>
-		<ColouredText>
-			✅Na elke verandering licht een cel kort&nbsp;
-			<ColouredText color="yellow">geel</ColouredText>&nbsp;op.
-		</ColouredText>
-		<ColouredText>
-			✅Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast
-			elkaar staan, lichten deze cellen kort&nbsp;
-			<ColouredText color="green">groen</ColouredText>&nbsp;op en worden
-			ze leeg gemaakt.
-		</ColouredText>
-		<ColouredText>
+		</HighlightedText>
+		<HighlightedText>
+			Was een cel leeg, dan wordt die op 1 gezet.
+		</HighlightedText>
+		<HighlightedText>
+			Na elke verandering licht een cel kort&nbsp;
+			<HighlightedText color="yellow">geel</HighlightedText>&nbsp;op.
+		</HighlightedText>
+		<HighlightedText>
+			Als 5 elkaar in de Fibonacci-reeks opvolgende getallen naast elkaar
+			staan, lichten deze cellen kort&nbsp;
+			<HighlightedText color="green">groen</HighlightedText>&nbsp;op en
+			worden ze leeg gemaakt.
+		</HighlightedText>
+		<HighlightedText>
 			Gebruik de programmeertaal die je het beste vindt passen.
-		</ColouredText>
+		</HighlightedText>
 	</Container>
 );
 
 const Container = styled.View`
 	flex: 1;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-evenly;
 `;
 
-const ColouredText = styled.Text<{ color?: string }>`
+const Title = styled.Text`
+	font-size: 32px;
+`;
+
+const HighlightedText = styled.Text<{ color?: string }>`
 	background-color: ${(props) =>
 		props.theme.colors[props.color] || props.theme.colors.white};
 `;
