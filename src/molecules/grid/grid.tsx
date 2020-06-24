@@ -6,6 +6,7 @@ import {
 	constructInitialGrid,
 	checkFibonacci,
 } from 'src/molecules/grid/grid-helper';
+import { isFibonacci } from 'src/providers/fibonacci-math';
 
 export const Grid: React.FC<GridProps> = ({ size }) => {
 	const initialGrid = constructInitialGrid(size);
@@ -23,7 +24,11 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 			gridClone[clickedRowIndex][iterator].value += 1;
 
 			// check for Fibonacci
-			checkFibonacci(gridClone[iterator]);
+			const cellValue = gridClone[clickedRowIndex][iterator].value;
+			const rowCellValue = gridClone[iterator][clickedCellIndex].value;
+			if (isFibonacci(cellValue) || isFibonacci(rowCellValue)) {
+				checkFibonacci(gridClone[iterator]);
+			}
 		}
 		setGrid(gridClone);
 	};
