@@ -3,8 +3,6 @@
 		"name": "50-50-Q42",
     "slug": "50-50-Q42",
 		"platforms": [
-			"ios",
-			"android",
 			"web"
 		],
 		"version": "1.0.0",
