@@ -4,33 +4,21 @@ import styled from 'styled-components/native';
 import { Cell } from 'src/atoms/cell';
 import {
 	constructInitialGrid,
-	checkFibonacci,
+	getUpdatedGrid,
 } from 'src/molecules/grid/grid-helper';
-import { isFibonacci } from 'src/providers/fibonacci-math';
 
 export const Grid: React.FC<GridProps> = ({ size }) => {
 	const initialGrid = constructInitialGrid(size);
 	const [grid, setGrid] = useState(initialGrid);
 
 	const onCellClick = (clickedCellIndex: number, clickedRowIndex: number) => {
-		const gridClone = grid.map((inner) => inner.slice());
+		const updatedGrid = getUpdatedGrid(
+			grid,
+			clickedCellIndex,
+			clickedRowIndex
+		);
 
-		for (let iterator = 0; iterator < size; iterator++) {
-			if (iterator !== clickedRowIndex) {
-				// update vertical cells
-				gridClone[iterator][clickedCellIndex].value += 1;
-			}
-			// update horizontal cells
-			gridClone[clickedRowIndex][iterator].value += 1;
-
-			// check for Fibonacci
-			const cellValue = gridClone[clickedRowIndex][iterator].value;
-			const rowCellValue = gridClone[iterator][clickedCellIndex].value;
-			if (isFibonacci(cellValue) || isFibonacci(rowCellValue)) {
-				checkFibonacci(gridClone[iterator]);
-			}
-		}
-		setGrid(gridClone);
+		setGrid(updatedGrid);
 	};
 
 	return (

@@ -22,6 +22,31 @@ export const constructInitialGrid = (size: number) => {
 	);
 };
 
+export const getUpdatedGrid = (
+	grid: GridCell[][],
+	clickedCellIndex: number,
+	clickedRowIndex: number
+) => {
+	const gridToUpdate = grid.map((inner) => inner.slice());
+
+	for (let iterator = 0; iterator < grid.length; iterator++) {
+		if (iterator !== clickedRowIndex) {
+			// update vertical cells
+			gridToUpdate[iterator][clickedCellIndex].value += 1;
+		}
+		// update horizontal cells
+		gridToUpdate[clickedRowIndex][iterator].value += 1;
+
+		// check for Fibonacci
+		const cellValue = gridToUpdate[clickedRowIndex][iterator].value;
+		const rowCellValue = gridToUpdate[iterator][clickedCellIndex].value;
+		if (isFibonacci(cellValue) || isFibonacci(rowCellValue)) {
+			checkFibonacci(gridToUpdate[iterator]);
+		}
+	}
+	return gridToUpdate;
+};
+
 export const checkFibonacci = (row: GridCell[]) =>
 	row.map((cell: GridCell) => {
 		const endIndex = cell.cellIndex - SEQUENCE_LENGTH + 1;
