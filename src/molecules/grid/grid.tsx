@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { Cell } from 'src/atoms/cell';
+import { Cell } from 'src/molecules/cell';
 import {
 	constructInitialGrid,
 	getUpdatedGrid,
