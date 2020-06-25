@@ -40,6 +40,7 @@ export const getUpdatedGrid = (
 		// check for Fibonacci
 		const cellValue = gridToUpdate[clickedRowIndex][iterator].value;
 		const rowCellValue = gridToUpdate[iterator][clickedCellIndex].value;
+
 		if (isFibonacci(cellValue) || isFibonacci(rowCellValue)) {
 			checkFibonacci(gridToUpdate[iterator]);
 		}
