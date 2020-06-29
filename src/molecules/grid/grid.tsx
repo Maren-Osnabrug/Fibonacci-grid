@@ -23,21 +23,21 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 
 	return (
 		<Container>
-			{grid.map((row, rowIndex) => (
-				<Row key={rowIndex}>
-					{row.map(({ value, cellIndex, rowIndex }: GridCell) => (
-						<CellContainer
-							key={`${rowIndex}-${cellIndex}`}
-							rowCellCount={size}
-						>
-							<Cell
-								value={value}
-								onClick={() => onCellClick(cellIndex, rowIndex)}
-							/>
-						</CellContainer>
-					))}
-				</Row>
-			))}
+			{grid.flat().map((row, rowIndex) => {
+				return (
+					<CellContainer
+						key={`${rowIndex}-${row.cellIndex}`}
+						rowCellCount={size}
+					>
+						<Cell
+							value={row.value}
+							onClick={() =>
+								onCellClick(row.cellIndex, row.rowIndex)
+							}
+						/>
+					</CellContainer>
+				);
+			})}
 		</Container>
 	);
 };
@@ -54,13 +54,9 @@ export interface GridCell {
 
 const Container = styled.View`
 	display: flex;
-	flex-direction: column;
-	width: 95%;
-`;
-
-const Row = styled.View`
-	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	width: 95%;
 `;
 
 const CellContainer = styled.View<{ rowCellCount: number }>`

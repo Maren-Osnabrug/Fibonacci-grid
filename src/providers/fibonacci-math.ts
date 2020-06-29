@@ -17,7 +17,7 @@ export const MINIMUM_FIBONACCI_VALUE = fibonacciNumberAtPosition(
 	SEQUENCE_LENGTH
 );
 
-export const getFibonacciSequence = (cell) => {
+export const getFibonacciSequence = (cell: number) => {
 	const sequence = [];
 	let toPush = cell;
 	for (let iterator = 0; iterator < SEQUENCE_LENGTH; iterator++) {
@@ -33,7 +33,7 @@ export const isPerfectSquare = (number: number) => {
 	return square * square === number;
 };
 
-export const isFibonacci = (n) => {
+export const isFibonacci = (n: number) => {
 	// n is Fibinacci if one of
 	// 5*n*n + 4 or
 	// 5*n*n - 4 or
@@ -51,10 +51,3 @@ export const isBetweenIndex = (
 ) => {
 	return index >= lowerBound && index <= upperbound;
 };
-
-// check if cell is less than the value at SEQUENCE_LENGTH in the Fibinacci Sequence
-// in a sequence of SEQUENCE_LENGTH Fibinacci numbers,
-// if the number at that point has not been reached yet,
-// the sequence is not long enough(yet) and we can stop these calculations early
-// also check if the cell itself is a Fibonacci number,
-// and if we have enough items left in the row
