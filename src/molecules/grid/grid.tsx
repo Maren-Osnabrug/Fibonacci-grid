@@ -23,21 +23,17 @@ export const Grid: React.FC<GridProps> = ({ size }) => {
 
 	return (
 		<Container>
-			{grid.flat().map((row, rowIndex) => {
-				return (
-					<CellContainer
-						key={`${rowIndex}-${row.cellIndex}`}
-						rowCellCount={size}
-					>
-						<Cell
-							value={row.value}
-							onClick={() =>
-								onCellClick(row.cellIndex, row.rowIndex)
-							}
-						/>
-					</CellContainer>
-				);
-			})}
+			{grid.flat().map((row, rowIndex) => (
+				<CellContainer
+					key={`${rowIndex}-${row.cellIndex}`}
+					rowCellCount={size}
+				>
+					<Cell
+						value={row.value}
+						onClick={() => onCellClick(row.cellIndex, row.rowIndex)}
+					/>
+				</CellContainer>
+			))}
 		</Container>
 	);
 };
